@@ -4,6 +4,7 @@ import Player from "./components/Player";
 import Log from "./components/Log";
 import { WINNING_COMBINATIONS } from "./winning-combinations";
 import GameOver from "./components/GameOver";
+import Header from "./components/Header";
 
 const PLAYERS = {
   X : 'Player  1',
@@ -101,7 +102,9 @@ function App() {
     });
   }
   return (
-    <main>
+    <>
+    <Header/>
+    <main className="game-container">
       <div id="game-container">
         <ol id="players" className="highlight-player">
           <Player
@@ -117,11 +120,12 @@ function App() {
             onChangeName={handlePlayerNameChange}
           />
         </ol>
-         {(winner || hasDraw ) && <GameOver winner={winner} onRestart={handleRestart} />} 
+        {(winner || hasDraw) && <GameOver winner={winner} onRestart={handleRestart} />}
         <GameBoard onSelectSquare={handleSelectSquare} board={gameBoard} />
       </div>
       <Log turns={gameTurns} />
     </main>
+    </>
   );
 }
 
